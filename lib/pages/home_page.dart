@@ -18,25 +18,41 @@ class _HomePageState extends State<HomePage> {
   Future getDocId() async {
     await FirebaseFirestore.instance
         .collection("users")
+        // .orderBy("age", descending: true)
+        // .where("age",isGreaterThan: 21)
         .get()
         .then((snapshot) => snapshot.docs.forEach((document) {
-              // print(document.reference);
               docIDs.add(document.reference.id);
             }));
+    // await FirebaseFirestore.instance
+    //     .collection("users")
+    //     .orderBy("age", descending: true)
+    //     .where("age",isGreaterThan: 21)
+    //     .get()
+    //     .then((snapshot) => snapshot.docs.forEach((document) {
+    //           // print(snapshot.docs);
+    //           // docIDs = snapshot.docs as List<String>;
+    //           // print(document.reference);
+    //           docIDs.add(document.reference.id);
+    //           // setState(() {
+    //           //
+    //           // });
+    //         }));
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    // getDocId();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   // getDocId();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(user.email!),
+        backgroundColor: Colors.deepPurple,
         centerTitle: true,
         actions: [
           GestureDetector(
@@ -69,8 +85,13 @@ class _HomePageState extends State<HomePage> {
                     return ListView.builder(
                         itemCount: docIDs.length,
                         itemBuilder: (context, index) {
-                          return ListTile(
-                            title: GetUserName(documentId: docIDs[index]),
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              tileColor: Colors.deepPurple[100],
+                              // title: GetUserName(documentId: docIDs[index]),
+                              title: Text(docIDs[index]),
+                            ),
                           );
                         });
                   }))

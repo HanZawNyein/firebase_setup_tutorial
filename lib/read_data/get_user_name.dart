@@ -8,7 +8,9 @@ class GetUserName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     CollectionReference users = FirebaseFirestore.instance.collection("users");
+
     return FutureBuilder<DocumentSnapshot>(
       future: users.doc(documentId).get(),
       builder: ((context, snapshot) {
@@ -16,7 +18,8 @@ class GetUserName extends StatelessWidget {
           Map<String, dynamic> data =
               snapshot.data!.data() as Map<String, dynamic>;
           // print(data.toString());
-          return Text('First Name: ${data['last name']}');
+          // return Text(data['first name']+' '+data['last name']);
+          return Text("${data['first name']} ${data['last name']}, ${data['age']} Years old.");
         }
         return Text("loading...");
       }),
