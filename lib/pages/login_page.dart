@@ -19,15 +19,17 @@ class _LoginPageState extends State<LoginPage> {
 
   Future signIn() async {
     // loading screens
-    showDialog(context: context, builder: (context){
-      return Center(child: CircularProgressIndicator());
-    });
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(child: CircularProgressIndicator());
+        });
     await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim());
 
     //pop loading circle
-    Navigator.of(context).pop();
+    if (context.mounted) Navigator.of(context).pop();
   }
 
   @override
@@ -48,11 +50,11 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
+              const Icon(
                 Icons.phone_android,
                 size: 100,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 75,
               ),
               Text(
@@ -62,11 +64,11 @@ class _LoginPageState extends State<LoginPage> {
               // SizedBox(
               //   height: 10.0,
               // ),
-              Text(
-                "Welcome back, you\'ve been missed!",
+              const Text(
+                "Welcome back, you've been missed!",
                 style: TextStyle(fontSize: 20.0),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50.0,
               ),
               Padding(
@@ -80,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
                       controller: _emailController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Email',
                       ),
@@ -88,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
               Padding(
@@ -103,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: TextField(
                       controller: _passwordController,
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Password',
                       ),
@@ -111,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
               Padding(
@@ -123,10 +125,10 @@ class _LoginPageState extends State<LoginPage> {
                       onTap: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return ForgotPasswordPage();
+                          return const ForgotPasswordPage();
                         }));
                       },
-                      child: Text(
+                      child: const Text(
                         "Forgot Password ?",
                         style: TextStyle(
                             color: Colors.deepPurple,
@@ -136,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10.0,
               ),
               Padding(
@@ -144,11 +146,11 @@ class _LoginPageState extends State<LoginPage> {
                 child: GestureDetector(
                   onTap: signIn,
                   child: Container(
-                    padding: EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                         color: Colors.deepPurple,
                         borderRadius: BorderRadius.circular(20)),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         "Sign In",
                         style: TextStyle(
@@ -160,16 +162,16 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25.0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Not a member ?."),
+                  const Text("Not a member ?."),
                   GestureDetector(
                     onTap: widget.showRegisterPage,
-                    child: Text(
+                    child: const Text(
                       "Register Now",
                       style: TextStyle(
                           color: Colors.deepPurple,

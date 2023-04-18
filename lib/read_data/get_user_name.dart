@@ -21,7 +21,7 @@ class GetUserName extends StatelessWidget {
           // return Text(data['first name']+' '+data['last name']);
           return Text("${data['first name']} ${data['last name']}, ${data['age']} Years old.");
         }
-        return Text("loading...");
+        return const Text("loading...");
       }),
     );
   }

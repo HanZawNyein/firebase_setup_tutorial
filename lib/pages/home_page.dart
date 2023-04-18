@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_setuptutorial/read_data/get_user_name.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,31 +20,12 @@ class _HomePageState extends State<HomePage> {
         // .orderBy("age", descending: true)
         // .where("age",isGreaterThan: 21)
         .get()
-        .then((snapshot) => snapshot.docs.forEach((document) {
-              docIDs.add(document.reference.id);
-            }));
-    // await FirebaseFirestore.instance
-    //     .collection("users")
-    //     .orderBy("age", descending: true)
-    //     .where("age",isGreaterThan: 21)
-    //     .get()
-    //     .then((snapshot) => snapshot.docs.forEach((document) {
-    //           // print(snapshot.docs);
-    //           // docIDs = snapshot.docs as List<String>;
-    //           // print(document.reference);
-    //           docIDs.add(document.reference.id);
-    //           // setState(() {
-    //           //
-    //           // });
-    //         }));
+        .then((snapshot) {
+      for (var document in snapshot.docs) {
+        docIDs.add(document.reference.id);
+      }
+    });
   }
-
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   // getDocId();
-  //   super.initState();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +36,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         actions: [
           GestureDetector(
-            child: Icon(Icons.logout),
+            child: const Icon(Icons.logout),
             onTap: () {
               FirebaseAuth.instance.signOut();
             },
