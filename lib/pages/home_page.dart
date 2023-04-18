@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'package:firebase_setuptutorial/read_data/get_user_name.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -69,8 +71,8 @@ class _HomePageState extends State<HomePage> {
                             padding: const EdgeInsets.all(8.0),
                             child: ListTile(
                               tileColor: Colors.deepPurple[100],
-                              // title: GetUserName(documentId: docIDs[index]),
-                              title: Text(docIDs[index]),
+                              title: GetUserName(documentId: docIDs[index]),
+                              // title: Text(docIDs[index]),
                             ),
                           );
                         });
